@@ -9,4 +9,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include_directories(include)
 
+add_executable(locks
+    src/lock.c
+)
+
 find_package(Threads REQUIRED)
+target_link_libraries(locks PRIVATE Threads::Threads)
