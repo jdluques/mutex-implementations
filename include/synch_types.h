@@ -6,6 +6,6 @@ typedef enum {
     LOCK_DEKKER,
     LOCK_PETERSON,
     LOCK_DIJKSTRA
-} lock_type_t;
+} synch_type_t;
 
 #endif

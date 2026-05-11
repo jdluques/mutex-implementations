@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.27)
 
-project(locks C)
+project(SynchronizationPrimitives C)
 
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -9,9 +9,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include_directories(include)
 
-add_executable(locks
+add_executable(synch
     src/main.c
-    src/lock.c
+    src/synch.c
     src/dekker.c
     src/peterson.c
     src/dijkstra.c
@@ -19,4 +19,4 @@ add_executable(locks
 )
 
 find_package(Threads REQUIRED)
-target_link_libraries(locks PRIVATE Threads::Threads)
+target_link_libraries(synch PRIVATE Threads::Threads)

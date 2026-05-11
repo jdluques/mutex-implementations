@@ -1,13 +1,13 @@
-#include "lock.h"
+#include "synch.h"
 
 #include "dekker.h"
 #include "peterson.h"
 #include "dijkstra.h"
 #include "pthread_lock.h"
 
-static lock_type_t current_lock;
+static synch_type_t current_lock;
 
-void lock_init(lock_type_t type, int thread_count)
+void lock_init(synch_type_t type, int thread_count)
 {
     current_lock = type;
 
