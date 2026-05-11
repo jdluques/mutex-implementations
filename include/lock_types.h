@@ -3,7 +3,7 @@
 
 typedef enum {
     LOCK_PTHREAD,
-    LOCK_DECKER,
+    LOCK_DEKKER,
     LOCK_PETERSON,
     LOCK_DIJKSTRA
 } lock_type_t;

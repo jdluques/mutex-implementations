@@ -33,7 +33,7 @@ void dijkstra_lock(int id)
 {
     interest[id] = 1;
 
-    while (others_are_interested()) {
+    while (others_are_interested(id)) {
         if (order != id) {
             interest[id] = 0;
             

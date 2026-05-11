@@ -1,4 +1,4 @@
-cmake_minimun_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.27)
 
 project(locks C)
 
@@ -11,9 +11,9 @@ include_directories(include)
 
 add_executable(locks
     src/lock.c
-    src/decker.c
+    src/dekker.c
     src/peterson.c
-    srd/dijkstra.c
+    src/dijkstra.c
 )
 
 find_package(Threads REQUIRED)
