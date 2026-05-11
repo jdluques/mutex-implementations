@@ -3,6 +3,7 @@
 #include "dekker.h"
 #include "peterson.h"
 #include "dijkstra.h"
+#include "pthread_lock.h"
 
 static lock_type_t current_lock;
 
@@ -12,6 +13,7 @@ void lock_init(lock_type_t type, int thread_count)
 
     switch (type) {
         case LOCK_PTHREAD:
+            pthread_lock_init();
             break;
 
         case LOCK_DEKKER:
@@ -32,6 +34,7 @@ void thread_lock(int id)
 {
     switch (current_lock) {
         case LOCK_PTHREAD:
+            pthread_thread_lock(-1);
             break;
 
         case LOCK_DEKKER:
@@ -52,6 +55,7 @@ void thread_unlock(int id)
 {
     switch (current_lock) {
         case LOCK_PTHREAD:
+            pthread_thread_unlock(-1);
             break;
 
         case LOCK_DEKKER:

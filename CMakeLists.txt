@@ -14,6 +14,7 @@ add_executable(locks
     src/dekker.c
     src/peterson.c
     src/dijkstra.c
+    src/pthread_lock.c
 )
 
 find_package(Threads REQUIRED)
