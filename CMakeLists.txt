@@ -11,6 +11,7 @@ include_directories(include)
 
 add_executable(locks
     src/lock.c
+    src/decker.c
 )
 
 find_package(Threads REQUIRED)
