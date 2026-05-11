@@ -13,6 +13,7 @@ add_executable(locks
     src/lock.c
     src/decker.c
     src/peterson.c
+    srd/dijkstra.c
 )
 
 find_package(Threads REQUIRED)

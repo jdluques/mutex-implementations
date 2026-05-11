@@ -22,6 +22,7 @@ void lock_init(lock_type_t type, int thread_count)
             break;
 
         case LOCK_DIJKSTRA:
+            dijkstra_init(thread_count);
             break;
     }
 }
@@ -41,6 +42,7 @@ void thread_lock(int id)
             break;
 
         case LOCK_DIJKSTRA:
+            dijkstra_lock(id);
             break;
     }
 }
@@ -60,6 +62,7 @@ void thread_unlock(int id)
             break;
 
         case LOCK_DIJKSTRA:
+            dikstra_unlock(id);
             break;
     }
 }
