@@ -20,7 +20,7 @@ void *thread_func(void *arg) {
 
     for (int i = 0; i < iters; i++) {
         counter++;
-        printf("Counter incremented by Thread %d to %d", id, counter);
+        printf("Counter incremented by Thread %d to %d\n", id, counter);
     }
 
     thread_unlock(id);
@@ -31,7 +31,7 @@ void *thread_func(void *arg) {
 int main(int argc, char *argv[])
 {
     if (argc < 4) {
-        fprintf(stderr, "Must provide N_THREADS, ITERS and SYNCH_TYPE");
+        fprintf(stderr, "Must provide N_THREADS, ITERS and SYNCH_TYPE\n");
         return 1;
     } 
 
@@ -40,11 +40,11 @@ int main(int argc, char *argv[])
     synch_type_t SYNCH_TYPE = atoi(argv[3]);
 
     if (SYNCH_TYPE < 0 || 3 < SYNCH_TYPE) {
-        fprintf(stderr, "Invalid SYNCH_TYPE (0: PTHREAD, 1: DEKKER, 2: PETERSON, 3: DIJKSTRA)");
+        fprintf(stderr, "Invalid SYNCH_TYPE (0: PTHREAD, 1: DEKKER, 2: PETERSON, 3: DIJKSTRA)\n");
         return 1;
     }
     if ((SYNCH_TYPE == 1 || SYNCH_TYPE == 2) && N_THREADS != 2) {
-        fprintf(stderr, "For Dekker's and Peterson's algorithms N_THREADS must be 2");
+        fprintf(stderr, "For Dekker's and Peterson's algorithms N_THREADS must be 2\n");
     }
 
     pthread_t threads[N_THREADS];
