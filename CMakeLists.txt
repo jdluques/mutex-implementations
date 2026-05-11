@@ -10,6 +10,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 include_directories(include)
 
 add_executable(locks
+    src/main.c
     src/lock.c
     src/dekker.c
     src/peterson.c
