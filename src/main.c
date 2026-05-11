@@ -16,14 +16,15 @@ void *thread_func(void *arg) {
     int id    = args->id;
     int iters = args->iters;
 
-    thread_lock(id);
 
     for (int i = 0; i < iters; i++) {
+        thread_lock(id);
+        
         counter++;
         printf("Counter incremented by Thread %d to %d\n", id, counter);
-    }
 
-    thread_unlock(id);
+        thread_unlock(id);
+    } 
 
     return NULL;
 }
@@ -48,13 +49,14 @@ int main(int argc, char *argv[])
     }
 
     pthread_t threads[N_THREADS];
-    int ids[N_THREADS];
+    thread_args args[N_THREADS];
 
     lock_init(SYNCH_TYPE, N_THREADS);
 
     for (int i = 0; i < N_THREADS; i++) {
-        ids[i] = i;
-        pthread_create(&threads[i], NULL, thread_func, &ids[i]);
+        args[i].id =  i;
+        args[i].iters = ITERS;
+        pthread_create(&threads[i], NULL, thread_func, &args[i]);
     }
 
     for (int i = 0; i < N_THREADS; i++) {
