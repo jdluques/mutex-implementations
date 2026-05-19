@@ -11,11 +11,11 @@ typedef struct {
     int iters;
 } thread_args;
 
-void *thread_func(void *arg) {
+void *thread_func(void *arg)
+{
     thread_args *args = ((thread_args *) arg);
     int id    = args->id;
     int iters = args->iters;
-
 
     for (int i = 0; i < iters; i++) {
         thread_lock(id);
