@@ -11,6 +11,7 @@ include_directories(include)
 
 add_executable(synch
     src/main.c
+    src/config.c
     src/synch.c
     src/dekker.c
     src/peterson.c

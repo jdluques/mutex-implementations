@@ -1,4 +1,5 @@
 #include "synch.h"
+#include "config.h"
 
 #include <pthread.h>
 #include <stdio.h>
@@ -29,37 +30,22 @@ void *thread_func(void *arg)
     return NULL;
 }
 
-int main(int argc, char *argv[])
+int main()
 {
-    if (argc < 4) {
-        fprintf(stderr, "Must provide N_THREADS, ITERS and SYNCH_TYPE\n");
-        return 1;
-    } 
+    config_t config = input_config();
 
-    int N_THREADS = atoi(argv[1]);
-    int ITERS     = atoi(argv[2]);
-    synch_type_t SYNCH_TYPE = atoi(argv[3]);
+    pthread_t threads[config.n_threads];
+    thread_args args[config.n_threads];
 
-    if (SYNCH_TYPE < 0 || 3 < SYNCH_TYPE) {
-        fprintf(stderr, "Invalid SYNCH_TYPE (0: PTHREAD, 1: DEKKER, 2: PETERSON, 3: DIJKSTRA)\n");
-        return 1;
-    }
-    if ((SYNCH_TYPE == 1 || SYNCH_TYPE == 2) && N_THREADS != 2) {
-        fprintf(stderr, "For Dekker's and Peterson's algorithms N_THREADS must be 2\n");
-    }
+    lock_init(config.synch_type, config.n_threads);
 
-    pthread_t threads[N_THREADS];
-    thread_args args[N_THREADS];
-
-    lock_init(SYNCH_TYPE, N_THREADS);
-
-    for (int i = 0; i < N_THREADS; i++) {
+    for (int i = 0; i < config.n_threads; i++) {
         args[i].id =  i;
-        args[i].iters = ITERS;
+        args[i].iters = config.iters;
         pthread_create(&threads[i], NULL, thread_func, &args[i]);
     }
 
-    for (int i = 0; i < N_THREADS; i++) {
+    for (int i = 0; i < config.n_threads; i++) {
         pthread_join(threads[i], NULL);
     }
 
